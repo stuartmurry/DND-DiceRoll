@@ -1,0 +1,48 @@
+<header>
+    <div class="container header-container">
+        <div class="row">
+            <div class="col-sm-5"></div>
+            <span class="col-sm-1 fa-layers fa-fw">
+                <i class="fa fa-user-circle user-icon" data-fa-transform="down-10"></i>
+                <i class="fas fa-circle add-user-bkg" data-fa-transform="down-25 right-10"></i>
+                <i class="fa fa-plus-circle add-user" data-fa-transform="down-25 right-10"></i>
+                <!-- <span class="fa-layers-counter" style="background:Tomato">1,419</span> -->
+            </span>
+        </div>
+    </div>
+</header>
+
+
+<main class="container">
+    <div class="row" *ngFor="let msg of currentUser.Messages">
+        {{ msg.Label }}
+    </div>
+</main>
+
+<footer class="fixed-bottom">
+    <div class="container footer-container-border">
+
+        <!-- If we don't place a relative switch 
+            then absolute positioning will computed from the edge of the viewport window
+            instead of the container when media screen is larger than 760px;
+         -->
+        <div style="position:relative">
+            <img (click)="roll()" *ngIf="currentUser.IsRollEnabled" class="active-dice" src="assets/images/dice-active.png">
+            <img (click)="roll()" *ngIf="!currentUser.IsRollEnabled" class="active-dice" src="assets/images/dice-disabled.png">
+        </div>
+
+        <div class="row">
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-2" *ngFor="let d of currentUser.Di;">
+                        <img class="center" (click)="clickSelectDice(d)" src="assets/images/dice-dnd.png">
+                        <h3 [ngClass]="{'disabled-text':d.IsDisabled}">{{d.Value}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <i class="fa fa-plus-circle add-user"></i>
+            </div>
+        </div>
+    </div>
+</footer>
