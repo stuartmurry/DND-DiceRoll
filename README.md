@@ -1,27 +1,98 @@
-# Didget
+# angular-nav-menu
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0-rc.2.
+Write a simple mobile nav menu using angular.io, typescript, bootstrap, font-awesome, and router.
 
-## Development server
+Some key technologies used here are:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* Angular.io 5.2
+* Angular-CLI
+* Font Awesome 5
+* Bootstrap 4
+* Angular Routing - SPA Framework
+* RxJS
+* Event Handling
+* TypeScript
+* EcmaScript
+* GitHub Pages
+* HTML 5
+* CSS
 
-## Code scaffolding
+# setup environment
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+install node.js
 
-## Build
+# Dependencies
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+angular-cli
 
-## Running unit tests
+angular-cli-ghpages
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+github-pages enabled (Found in the settings menu) (Also, do this after initial ngh deployment)
 
-## Running end-to-end tests
+# Caution
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+`ng github-pages:deploy` has been deprecated.  Use `ngh` instead.
 
-## Further help
+# Instructions
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+`npm i -g angular-cli@latest`
+
+`npm i -g angular-cli-ghpages@latest`
+
+`git clone https://github.com/stuartmurry/zekes.git` 
+
+`cd angular-nav-menu`
+
+To run locally
+
+`ng serve`
+
+# To deploy to Github Pages
+
+Create a new repository on Github.  Find the clone or download button.  You will see an https link. 
+
+`git remote add origin https://github.com/<repository-name>/<project>.git`
+
+Build Project. (p.s. Don't forget to include the forward slash at the end otherwise, the browser will fix url and all references to your files will be lost.)
+
+`ng build --prod --base-href "https://<repository-name>.github.io/<project>/"`
+
+Deploy to GitHub Pages
+
+`ngh`
+
+Go into `settings` within your Github account and select `settings` tab. Find Github Pages and select `gh-pages` branch from the dropdown menu.  `ngh` should do this automatically, however, its always safe to double check.
+
+# Create From Scratch
+
+Using the angular-cli, create a new angular project.
+
+`ng new angular-nav-menu`
+
+`cd angular-nav-menu`
+
+`npm install --save @ng-bootstrap/ng-bootstrap`
+
+Jump to `To deploy to Github Pages` and follow those instructions.
+
+# Mockup
+
+![alt text](https://raw.githubusercontent.com/stuartmurry/angular-nav-menu/master/mockup.jpg)
+
+# Nav Template
+
+5 lines says it all.  
+
+```html
+
+<div class="container nav-container" [style.height.px]="height">
+  <div *ngFor="let m of menuItems" (click)="navClick(m)" [ngStyle]="{ 'flex-grow' : m.GrowFactor }" class="item" [ngClass]="{ 'bkgnd-closed' : IsClosed(m), 'bkgnd-open' : IsOpen(m) }">
+    <i data-fa-transform="grow-3" class="icon {{ m.FontAwesomeCategory }} {{ m.FontAwesome }}"></i> {{m.name}}
+  </div>
+</div>
+
+```
+
+
+
+
