@@ -79,19 +79,7 @@ Jump to `To deploy to Github Pages` and follow those instructions.
 
 ![alt text](https://raw.githubusercontent.com/stuartmurry/angular-nav-menu/master/mockup.jpg)
 
-# Nav Template
 
-5 lines says it all.  
-
-```html
-
-<div class="container nav-container" [style.height.px]="height">
-  <div *ngFor="let m of menuItems" (click)="navClick(m)" [ngStyle]="{ 'flex-grow' : m.GrowFactor }" class="item" [ngClass]="{ 'bkgnd-closed' : IsClosed(m), 'bkgnd-open' : IsOpen(m) }">
-    <i data-fa-transform="grow-3" class="icon {{ m.FontAwesomeCategory }} {{ m.FontAwesome }}"></i> {{m.name}}
-  </div>
-</div>
-
-```
 
 
 
