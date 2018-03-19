@@ -77,7 +77,7 @@ Jump to `To deploy to Github Pages` and follow those instructions.
 
 # Mockup
 
-![alt text](https://raw.githubusercontent.com/stuartmurry/zekes/master/artwork/zekes-mockup.jpg)
+![alt text](https://raw.githubusercontent.com/stuartmurry/zekes/master/artwork/zekes-mockup.png)
 
 
 
