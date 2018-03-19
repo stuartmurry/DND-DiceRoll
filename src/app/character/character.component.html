@@ -1,0 +1,43 @@
+<app-nav name="Edit Character"></app-nav>
+
+<div *ngIf="(player | async) as plpl">
+  <div class="container" *ngFor="let c of plpl?.Characters  | character: characterid">
+    <h1 class="header">Character</h1>
+    <div class="form-group">
+      <textarea [(ngModel)]="c.name" class="form-control" rows="1" id="comment"></textarea>
+    </div>
+    <table class="table table-bordered table-md">
+      <thead class="tHeader">
+        <tr class="tr">
+          <th scope="col"></th>
+          <th scope="col">Value</th>
+          <th scope="col">Modifier</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let d of c.Di">
+          <th scope="row">
+            <img [src]="d.Source">
+          </th>
+          <td>{{d.Val}}</td>
+          <td>
+            <input type="text" [(ngModel)]="d.Modifier">
+          </td>
+          <td>
+            <button type="button" (click)="deleteDi(d, plpl, c)">
+                <i class="fas fa-times"></i>
+            </button>
+           
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="wrapper">
+      <button type="button" (click)="save(plpl)">Submit</button>
+    </div>
+  </div>
+</div>

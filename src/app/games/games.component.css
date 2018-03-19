@@ -1,0 +1,6 @@
+.bkgimg {
+  /* background-image: url(../../assets/images/backgnd.jpg); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}

@@ -1,0 +1,71 @@
+<div class="bkgimg">
+  <app-nav name="Games"></app-nav>
+
+
+  <main *ngIf="(player | async) as plpl" class="container mt-5 p-2">
+    <div *ngFor="let g of games | async" class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">{{g.RoomCode}}</span>
+      </div>
+      <button (click)="startGame(g, plpl)" type="button" class="form-control" aria-label="Amount (to the nearest dollar)">{{g.GameName}}</button>
+
+      <div *ngIf="isGM(g)" class="input-group-append">
+        <button class="btn btn-outline-danger" type="button" (click)="end(g)">END</button>
+      </div>
+
+    </div>
+
+    <!-- Inivitaions -->
+    <div *ngIf="HasInvitationRequests">
+      <h3 class="mt-2">Invitation Requests</h3>
+      <div *ngFor="let ii of myInvitations" class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{{ii.RoomCode}}</span>
+        </div>
+        <input type="text" [(ngModel)]="ii.GameName" name="gameName" class="form-control" placeholder="Name your game" aria-label="Game's Name enter it here."
+          aria-describedby="basic-addon2">
+        <!-- *ngIf="isGM(g)" -->
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="button" (click)="accept(ii, plpl)">ACCEPT</button>
+        </div>
+        <!-- *ngIf="isNotGM(g)" -->
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="button" (click)="cancelRequest(ii)">CANCEL REQUEST</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Create Game -->
+    <h3 class="mt-2">Create a Game</h3>
+    <div class="container border border-secondary p-3">
+      <div class="list-group">
+        <div class="input-group">
+          <input type="text" [(ngModel)]="gameName" name="gameName" class="form-control" placeholder="Name your game" aria-label="Game's Name enter it here."
+            aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="button" (click)="createGame(plpl)">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Join a game -->
+    <h3 class="mt-2">Join a Game</h3>
+
+    <div class="container border border-secondary p-3">
+
+      <div class="list-group">
+        <div class="input-group ">
+          <input type="text" [(ngModel)]="roomCode" (keyup)="searchByRoomCode()" name="roomCode" class="form-control" placeholder="Enter Room Code"
+            aria-describedby="emailHelp">
+          <div *ngIf="joinGameQueryObservable | async; let g" class="input-group-append">
+            <button class="btn btn-outline-primary" type="button" (click)="join(g, plpl)">Join</button>
+          </div>
+        </div>
+        <small id="emailHelp" class="form-text text-muted">{{ (joinGameQueryObservable | async)?.GameName }}</small>
+      </div>
+
+    </div>
+  </main>
+</div>

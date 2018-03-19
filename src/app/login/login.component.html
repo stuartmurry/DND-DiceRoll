@@ -1,0 +1,31 @@
+<div class="bkgimg">
+    <div class="container">
+
+        <form class="col-6 login-center">
+      
+          <p class="text-center"><img class="login-logo" src="assets/images/zekes-logo.png"></p>
+      
+          <h2 class="spaceFromTop">Welcome, Adventurer</h2>
+      
+          <div class="alert alert-danger" role="alert" *ngIf="showError">
+            <strong>{{errormessage}}</strong> 
+          </div>
+          <div class="alert alert-warning" role="alert" *ngIf="showInfo">
+              <strong>{{infomessage}}</strong> 
+          </div>
+      
+          <div class="form-group row">
+            <input [(ngModel)]="email" name="email" class="form-control" id="inputEmail" placeholder="email" width="25" maxlength="50">
+          </div>
+          <div class="form-group row">
+            <input [(ngModel)]="password" type="password" name="password" class="form-control" id="inputPassword" placeholder="password" maxlength="20">
+          </div>
+          <div class="row">
+            <button type="button" class="btn btn-primary" (click)="login()">Login</button>
+            <button type="button" class="btn btn-link" (click)="forgotPassword()">Forgot Password</button>
+            <button type="button" class="btn btn-link" (click)="register()">Register</button>
+          </div>
+      
+        </form>
+      </div>
+</div>

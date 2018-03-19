@@ -1,0 +1,41 @@
+<app-nav name="Characters"></app-nav>
+
+<main class="container mt-5 p-2" *ngIf="player | async; let plpl">
+
+  <h3 class="mt-2">Characters</h3>
+  <div *ngFor="let c of (characters | async)" class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">{{c.name}}</span>
+    </div>
+    <input type="text" [(ngModel)]="c.GameName" name="gameName" class="form-control" placeholder="Name your game" aria-label="Game's Name enter it here."
+      aria-describedby="basic-addon2">
+
+    <!-- *ngIf="isGM(g)" -->
+    <div class="input-group-append">
+      <button class="btn btn-outline-primary" type="button" (click)="editCharacter(c, plpl)">EDIT</button>
+    </div>
+    <!-- *ngIf="isNotGM(g)" -->
+    <div class="input-group-append">
+      <button class="btn btn-outline-primary" type="button" (click)="delete(c, plpl)">DELETE</button>
+    </div>
+  </div>
+
+  <div class="input-group mb-3">
+    <input type="text" [(ngModel)]="newCharacter" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+      aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-success" type="button" (click)="editCharacter(null, plpl)">
+        <i class="fa fa-plus-circle"></i> Add</button>
+    </div>
+  </div>
+
+
+  <!-- <div *ngFor="let c of characters | async" class="input-group">
+    {{c | json}}
+  </div>
+
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button (click)="editCharacter(c)" *ngFor="let c of characters | async" type="button" class="btn btn-secondary">{{c.name}}</button>
+  </div> -->
+
+</main>

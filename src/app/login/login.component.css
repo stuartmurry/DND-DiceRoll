@@ -1,0 +1,20 @@
+.login-center {
+  padding-top: 150px;
+  float: none;
+  margin: 0 auto;
+}
+
+.btn {
+  margin-right: 12px;
+}
+
+.login-logo {
+  width: 300px;
+}
+
+.bkgimg {
+  background-image: url(../../assets/images/backgnd.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}

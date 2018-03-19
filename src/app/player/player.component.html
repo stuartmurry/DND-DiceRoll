@@ -1,48 +1,55 @@
-<header>
-    <div class="container header-container">
-        <div class="row">
-            <div class="col-sm-5"></div>
-            <span class="col-sm-1 fa-layers fa-fw">
-                <i class="fa fa-user-circle user-icon" data-fa-transform="down-10"></i>
-                <i class="fas fa-circle add-user-bkg" data-fa-transform="down-25 right-10"></i>
-                <i class="fa fa-plus-circle add-user" data-fa-transform="down-25 right-10"></i>
-                <!-- <span class="fa-layers-counter" style="background:Tomato">1,419</span> -->
-            </span>
+<div class="bkgimg" *ngIf="game | async; let g">
+    <header class="clickable-area">
+        <div class="container header-container">
+            <div class="row text-center">
+                <div class="col-12">
+                    <div class="fa-4x">
+                        <!-- <span class="fa-layers fa-fw" >
+                                    <i class="far fa-user-circle" ></i>
+                                    <i class="far fa-circle" ></i>
+                                    <i class="far fa-plus-circle" ></i>
+                                </span> -->
+                        <span class="fa-layers fa-fw">
+                            <i class="fas fa-user-circle"></i>
+                            <!-- <i class="fas fas fa-circle" style="color:rgb(255, 255, 255);" data-fa-transform="shrink-6 down-5 right-5"></i> -->
+                            <!-- <i class="fas fa-plus-circle" style="color:green;" data-fa-transform="shrink-6 down-5 right-5"></i> -->
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <p class="GameName" style="text-align:center">{{g.GameName}}</p>
         </div>
-    </div>
-</header>
+    </header>
 
 
-<main class="container">
-    <div class="row" *ngFor="let msg of currentUser.Messages">
-        {{ msg.Label }}
-    </div>
-</main>
-
-<footer class="fixed-bottom">
-    <div class="container footer-container-border">
-
-        <!-- If we don't place a relative switch 
-            then absolute positioning will computed from the edge of the viewport window
-            instead of the container when media screen is larger than 760px;
-         -->
-        <div style="position:relative">
-            <img (click)="roll()" *ngIf="currentUser.IsRollEnabled" class="active-dice" src="assets/images/dice-active.png">
-            <img (click)="roll()" *ngIf="!currentUser.IsRollEnabled" class="active-dice" src="assets/images/dice-disabled.png">
+    <main class="container" style="height:100%" (click)="clearDiceSelection()">
+        <div class="row" *ngFor="let m of messages">
+            {{ m.Label }}
         </div>
+    </main>
 
-        <div class="row">
-            <div class="col-9">
-                <div class="row">
-                    <div class="col-2" *ngFor="let d of currentUser.Di;">
-                        <img class="center" (click)="clickSelectDice(d)" src="assets/images/dice-dnd.png">
-                        <h3 [ngClass]="{'disabled-text':d.IsDisabled}">{{d.Value}}</h3>
+    <footer class="fixed-bottom">
+        <div class="container footer-container-border">
+            <div style="width:100%; text-align:center;">{{selectedCharacter.name}}</div>
+            <div style="position:relative">
+                <div class="active-dice">
+                    <p style="text-align:right;">
+                        <img *ngIf="IsRollEnabled" (click)="roll(selectedCharacter)" src="assets/images/dice-active.png" style="text-align:right">
+                        <img *ngIf="!IsRollEnabled" src="assets/images/dice-disabled.png" style="text-align:right">
+                    </p>
+                    <div>
+
+                        <div class="selected-dice" [ngStyle]="{ 'background-image' : 'url(' + d.Source + ')' }" *ngFor="let d of diceQueue">
+                            <h5 class="lineheight">5</h5>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="col-3">
-                <i class="fa fa-plus-circle add-user"></i>
+            <div class="row">
+                <img (click)="clickSelectDice(d)" *ngFor="let d of selectedCharacter.Di" class="selected-dice" [src]="d.Source">
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
+</div>

@@ -1,0 +1,40 @@
+<app-nav name="Character Selection"></app-nav>
+
+<div *ngIf="player | async; let plpl">
+  <div *ngIf="game | async; let g">
+    <main class="container mt-5 p-2">
+      <div>
+        <div *ngFor="let c of (characters | async)" class="input-group mb-3" data-toggle="modal" data-target="#exampleModal" (click)="setPlayerGame(c, plpl, g)">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> </span>
+          </div>
+          <input disabled type="text" [(ngModel)]="c.name" name="gameName" class="form-control" placeholder="Name your game" aria-label="Game's Name enter it here."
+            aria-describedby="basic-addon2">
+        </div>
+      </div>
+
+    </main>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Character selection is permanent and cannot be changed within the game. Do you want to proceed?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger" (click)="selectCharacter(c, g, plpl)" data-dismiss="modal">Proceed</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
