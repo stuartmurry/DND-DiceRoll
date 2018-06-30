@@ -3,11 +3,10 @@ import "rxjs/add/operator/map";
 
 import { Observable } from "rxjs/Observable";
 
-import { Dice, Message, Game, Player, Character, RoomCode } from "../bug-bear";
+import { Dice, Message, Game, Player, Character, RoomCode } from "../app";
 import { Globals } from "../globals";
 import { Injectable } from "@angular/core";
 
-import * as _ from "lodash";
 import { AuthService } from "./auth.service";
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from "angularfire2/firestore";
 
@@ -35,6 +34,7 @@ export class GameService {
     })
   }
 
+
   incrementRoomCode() {
     return this.roomCodeDocument.update({count : this.roomCode});
   }
@@ -51,87 +51,6 @@ export class GameService {
     };
     return player;
   }
-
-  // getPlayers(): Player[] {
-  //   let stuart = {
-  //     HasSelectedDi: false,
-  //     PlayerId: 1,
-  //     FirstName: "Stuart Murry",
-  //     DisplayName: "Stuart Murry",
-  //     Characters: this.getCharacters(),
-  //     SelectedCharacter: this.getCharacters()[0],
-  //     IsRollEnabled: false
-  //   };
-
-  //   let ericO = {
-  //     HasSelectedDi: false,
-  //     PlayerId: 2,
-  //     FirstName: "Eric Ostler",
-  //     DisplayName: "Eric Ostler",
-  //     Characters: this.getCharacters(),
-  //     SelectedCharacter: this.getCharacters()[0],
-  //     IsRollEnabled: false
-  //   };
-
-  //   let ericM = {
-  //     HasSelectedDi: false,
-  //     PlayerId: 3,
-  //     FirstName: "Eric Minson",
-  //     DisplayName: "Eric Minson",
-  //     Characters: this.getCharacters(),
-  //     SelectedCharacter: this.getCharacters()[0],
-  //     IsRollEnabled: false
-  //   };
-
-  //   let zach = {
-  //     HasSelectedDi: false,
-  //     PlayerId: 4,
-  //     FirstName: "Zach",
-  //     DisplayName: "Zach",
-  //     Characters: this.getCharacters(),
-  //     SelectedCharacter: this.getCharacters()[0],
-  //     IsRollEnabled: false
-  //   };
-
-  //   let kailey = {
-  //     HasSelectedDi: false,
-  //     PlayerId: 5,
-  //     FirstName: "Kailey",
-  //     DisplayName: "Kailey",
-  //     Characters: this.getCharacters(),
-  //     SelectedCharacter: this.getCharacters()[0],
-  //     IsRollEnabled: false
-  //   };
-
-  //   return [stuart, ericO, ericM, zach, kailey];
-  // }
-
-  // getPlayer(id: number | string): Player {
-  //   let p = this.getPlayers().find(function(p) {
-  //     return p.PlayerId === +id;
-  //   });
-
-  //   return p;
-  // }
-
-  // getGame(id: number | string) {
-  //   return this.getGames().find(function(g) {
-  //     return g.GameId === +id;
-  //   });
-  // }
-
-  // getGamesByPlayerId(id: number | string) {
-  //   let gg: Game[] = [];
-  //   _.forEach(this.getGames(), function(g) {
-  //     let p: Player = g.Players.find(function(p) {
-  //       return p.PlayerId === +id;
-  //     });
-  //     if (p != null) {
-  //       gg.push(g);
-  //     }
-  //   });
-  //   return gg;
-  // }
 
   getDi(): Dice[] {
     let di: Dice[] = [];
@@ -181,11 +100,6 @@ export class GameService {
   public getCurrentGame(): Game {
     return this.currentGame;
   }
-
-  // public getCharacters(): Character[] {
-    
-  //   return [this.createCharacterTemplate()];
-  // }
 
   public createCharacterTemplate(i : number, n : string) : Character {
     let c: Character = {

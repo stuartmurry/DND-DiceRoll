@@ -8,7 +8,7 @@ import {
 import "rxjs/Rx";
 import { Observable } from "rxjs/Observable";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Player, Game } from "../bug-bear";
+import { Player, Game } from "../app";
 import { Globals } from "../globals";
 import * as firebase from "firebase/app";
 import { GameService } from "./game.service";

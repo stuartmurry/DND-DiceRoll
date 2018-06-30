@@ -23,7 +23,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AuthService } from "./service/auth.service";
 import { LoginComponent } from './login/login.component';
-import { SplashComponent } from './splash/splash.component';
 import { NavComponent } from './nav/nav.component';
 import { PlayerSetupComponent } from './player-setup/player-setup.component';
 import { InviteComponent } from './invite/invite.component';
@@ -37,7 +36,6 @@ import { CharacterSelectionComponent } from './character-selection/character-sel
 const appRoutes: Routes = [
   { path: "player/:playerid/:gameid", component: PlayerComponent },
   { path: "player-setup", component: PlayerSetupComponent },
-  { path: "splash", component: SplashComponent },
   { path: "characters/:playerid", component: CharactersComponent },
   { path: "character/:playerid/:characterid", component: CharacterComponent },
   { path: "profile/:playerid", component: ProfileComponent },
@@ -45,7 +43,7 @@ const appRoutes: Routes = [
   { path: "character-selection/:gameid/:playerid", component: CharacterSelectionComponent },
   {
     path: "",
-    redirectTo: "/splash",
+    redirectTo: "/login",
     pathMatch: "full"
   },
   { path: "games/:playerid", component: GamesComponent },
@@ -60,7 +58,6 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     GamesComponent,
     LoginComponent,
-    SplashComponent,
     NavComponent,
     PlayerSetupComponent,
     InviteComponent,

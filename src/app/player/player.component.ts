@@ -1,6 +1,5 @@
 import { PubNubAngular } from "pubnub-angular2";
 import { Component, OnInit, Input } from "@angular/core";
-import * as _ from "lodash";
 import {
   Dice,
   Message,
@@ -9,7 +8,7 @@ import {
   PubNubItem,
   PubNubMessage,
   Character
-} from "../bug-bear";
+} from "../app";
 import { GameService } from "../service/game.service";
 import { ActivatedRoute, Router, ParamMap } from "@angular/router";
 import "rxjs/add/operator/switchMap";
@@ -77,8 +76,7 @@ export class PlayerComponent implements OnInit {
         // handle status, response
         if (status.statusCode == 200) {
           console.log("History");
-          _.each(response.messages, function(msg: PubNubItem) {
-            console.log(msg.entry);
+          response.messages.forEach((msg : PubNubItem) => {
             __this.messages.push(msg.entry);
           });
         }
@@ -114,8 +112,7 @@ export class PlayerComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log("Oninit");
-
+    console.log("Initializing Player Screen");
 
     this.route.params.subscribe(params => {
 

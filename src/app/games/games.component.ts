@@ -4,7 +4,7 @@ import "rxjs/add/operator/map";
 
 import { Component, OnInit, Input } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { Dice, Message, Game, Player, RoomCode } from "../bug-bear";
+import { Dice, Message, Game, Player, RoomCode } from "../app";
 import { GameService } from "../service/game.service";
 import { AuthService } from "../service/auth.service";
 import { Globals } from "../globals";
@@ -15,7 +15,6 @@ import {
 } from "angularfire2/firestore";
 import { ChangeDetectorStatus } from "@angular/core/src/change_detection/constants";
 
-import * as _ from "lodash";
 import { FirebaseApp } from "angularfire2";
 import { AngularFireAuth } from "angularfire2/auth";
 import { take } from "rxjs/operators/take";
@@ -33,10 +32,12 @@ export class GamesComponent implements OnInit {
 
   invitationCollection: AngularFirestoreCollection<Game>;
   invitations: Observable<Game[]>;
-  myInvitations : Game[];
+  myInvitations: Game[];
 
   playerCollection: AngularFirestoreCollection<Player>;
-  player: Observable<Player>;
+  player$: Observable<Player>;
+  player: Player;
+
   playerName: string;
   playerEmail: string;
   playerid: string;
@@ -44,9 +45,9 @@ export class GamesComponent implements OnInit {
   joinGameQueryObservable: any;
   roomCode$: Subject<string>;
   roomCode: string;
-  roomCodeMessage : string;
+  roomCodeMessage: string;
 
-  HasInvitationRequests : boolean;
+  HasInvitationRequests: boolean;
 
   constructor(
     private gameService: GameService,
@@ -64,9 +65,11 @@ export class GamesComponent implements OnInit {
       this.playerid = params["playerid"];
 
       this.playerCollection = this.afs.collection("players");
-      this.player = this.playerCollection
+      this.player$ = this.playerCollection
         .doc<Player>(this.playerid)
         .valueChanges();
+
+      this.player$.subscribe(p => (this.player = p));
 
       this.gameCollection = this.afs.collection("games", ref =>
         ref.where("Players." + this.playerid, "==", true)
@@ -75,7 +78,7 @@ export class GamesComponent implements OnInit {
       this.games = this.gameCollection.valueChanges();
 
       this.roomCode$ = new Subject<string>();
-      this.joinGameQueryObservable = this.roomCode$.switchMap(roomCode => 
+      this.joinGameQueryObservable = this.roomCode$.switchMap(roomCode =>
         this.afs
           .collection<Game>("games", ref =>
             ref.where("RoomCode", "==", +roomCode)
@@ -88,12 +91,11 @@ export class GamesComponent implements OnInit {
         ref.where("Invitations." + this.playerid, "==", true)
       );
       this.invitations = this.invitationCollection.valueChanges();
-      
+
       this.invitations.subscribe(i => {
         this.myInvitations = i;
         this.HasInvitationRequests = i.length > 0;
       });
-
     });
   }
 
@@ -124,7 +126,6 @@ export class GamesComponent implements OnInit {
     this.gameCollection.doc(g.GameID).update(g);
 
     this.roomCode = "";
-
   }
 
   cancelRequest(g: Game) {}
@@ -204,14 +205,14 @@ export class GamesComponent implements OnInit {
   }
 
   startGame(g: Game, p: Player) {
-
-    g.Characters = g.Characters ? g.Characters : {}; 
+    g.Characters = g.Characters ? g.Characters : {};
 
     console.log(g);
 
-    g.Characters[p.PlayerID] ? this.router.navigate(["player/" + this.playerid + '/' + g.GameID]) :
-      this.router.navigate(["character-selection/" + g.GameID + "/" + this.playerid]);
-
+    g.Characters[p.PlayerID]
+      ? this.router.navigate(["player/" + this.playerid + "/" + g.GameID])
+      : this.router.navigate([
+          "character-selection/" + g.GameID + "/" + this.playerid
+        ]);
   }
-
 }

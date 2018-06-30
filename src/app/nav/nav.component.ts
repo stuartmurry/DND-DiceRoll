@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { AuthService } from "../service/auth.service";
 import { Router } from "@angular/router";
-import { Player } from "../bug-bear";
+import { Player } from "../app";
 import { AngularFireAuth } from "angularfire2/auth";
 
 @Component({

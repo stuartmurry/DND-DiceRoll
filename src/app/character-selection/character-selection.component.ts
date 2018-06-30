@@ -6,7 +6,7 @@ import {
   AngularFirestoreDocument
 } from "angularfire2/firestore";
 import { Observable } from "rxjs/Observable";
-import { Player, Game, Character } from "../bug-bear";
+import { Player, Game, Character } from "../app";
 import { Router } from "@angular/router";
 
 @Component({

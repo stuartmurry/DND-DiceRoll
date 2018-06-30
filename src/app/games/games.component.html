@@ -1,13 +1,12 @@
 <div class="bkgimg">
   <app-nav name="Games"></app-nav>
-
-
-  <main *ngIf="(player | async) as plpl" class="container mt-5 p-2">
+  
+  <main class="container mt-5 p-2">
     <div *ngFor="let g of games | async" class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text">{{g.RoomCode}}</span>
       </div>
-      <button (click)="startGame(g, plpl)" type="button" class="form-control" aria-label="Amount (to the nearest dollar)">{{g.GameName}}</button>
+      <button (click)="startGame(g, player)" type="button" class="form-control" aria-label="Amount (to the nearest dollar)">{{g.GameName}}</button>
 
       <div *ngIf="isGM(g)" class="input-group-append">
         <button class="btn btn-outline-danger" type="button" (click)="end(g)">END</button>
@@ -26,7 +25,7 @@
           aria-describedby="basic-addon2">
         <!-- *ngIf="isGM(g)" -->
         <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="button" (click)="accept(ii, plpl)">ACCEPT</button>
+          <button class="btn btn-outline-primary" type="button" (click)="accept(ii, player)">ACCEPT</button>
         </div>
         <!-- *ngIf="isNotGM(g)" -->
         <div class="input-group-append">
@@ -44,7 +43,7 @@
           <input type="text" [(ngModel)]="gameName" name="gameName" class="form-control" placeholder="Name your game" aria-label="Game's Name enter it here."
             aria-describedby="basic-addon2">
           <div class="input-group-append">
-            <button class="btn btn-outline-primary" type="button" (click)="createGame(plpl)">Create</button>
+            <button class="btn btn-outline-primary" type="button" (click)="createGame(player)">Create</button>
           </div>
         </div>
       </div>
@@ -60,7 +59,7 @@
           <input type="text" [(ngModel)]="roomCode" (keyup)="searchByRoomCode()" name="roomCode" class="form-control" placeholder="Enter Room Code"
             aria-describedby="emailHelp">
           <div *ngIf="joinGameQueryObservable | async; let g" class="input-group-append">
-            <button class="btn btn-outline-primary" type="button" (click)="join(g, plpl)">Join</button>
+            <button class="btn btn-outline-primary" type="button" (click)="join(g, player)">Join</button>
           </div>
         </div>
         <small id="emailHelp" class="form-text text-muted">{{ (joinGameQueryObservable | async)?.GameName }}</small>

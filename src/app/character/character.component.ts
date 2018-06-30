@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/Observable";
-import { Character, Player, Dice } from "../bug-bear";
+import { Character, Player, Dice } from "../app";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   AngularFirestore,

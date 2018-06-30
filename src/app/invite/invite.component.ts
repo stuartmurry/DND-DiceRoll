@@ -5,7 +5,7 @@ import "rxjs/add/operator/map";
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap} from '@angular/router';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from "angularfire2/firestore";
-import { Game, Player } from "../bug-bear";
+import { Game, Player } from "../app";
 
 @Component({
   selector: 'app-invite',

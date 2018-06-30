@@ -1,11 +1,10 @@
 import { PubNubAngular } from "pubnub-angular2";
 import { OnInit, Component } from "@angular/core";
-import * as _ from "lodash";
 import { AuthService } from "./service/auth.service";
 import { AngularFireAuth } from "angularfire2/auth";
 import { Router } from "@angular/router";
 import { AngularFirestore } from "angularfire2/firestore";
-import { Player } from "./bug-bear";
+import { Player } from "./app";
 import { GameService } from "./service/game.service";
 
 @Component({

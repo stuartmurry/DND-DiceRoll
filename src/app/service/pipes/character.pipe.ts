@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { Character } from "../../bug-bear";
+import { Character } from "../../app";
 
 @Pipe({
   name: "character"

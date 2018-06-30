@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grid Basics</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <style>
+        .containerz {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            grid-template-columns: 1fr 3fr;
+            height: 100vh
+            
+        }
+
+        .containerz>div {
+            border: 1px solid blue;
+            border-radius: 5px;
+        }
+
+        .left {
+            grid-column: 1;
+            grid-row: 2;
+            position: relative;
+            min-height: 4em;
+        }
+
+        .header {
+            grid-column: 1 / span 3;
+            grid-row: 1;
+        }
+
+        .right {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+
+        .left>div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            max-height: 100%;
+            overflow: auto;
+        }
+
+        .footer {
+            grid-column: 1 / span 3;
+            grid-row: 3;
+        }
+
+        .footer > div {
+            padding: 5px
+        }
+    </style>
+</head>
+
+<body>
+    <div class="containerz">
+        <div class="header">
+            <nav class="nav">
+                <a class="nav-link active" href="#">Zekes</a>
+                <a class="nav-link" href="#">Kailey Tetrick</a>
+                <a class="nav-link" href="#">Logout</a>
+            </nav>
+        </div>
+        <div class="left">
+            <div>
+                left
+                <br>I don't want this one to scroll
+                <br>this should
+                <br>determine
+                <br>the height of the whole grid container
+
+
+                <br>I
+                <br>want
+                <br>this
+                <br>to
+                <br>scroll
+                <br>rather
+                <br>than
+                <br>making
+                <br>everything
+                <br>tall
+                <br>I
+                <br>want
+                <br>this
+                <br>to
+                <br>scroll
+                <br>rather
+                <br>than
+                <br>making
+                <br>everything
+                <br>tall
+            </div>
+
+        </div>
+
+        
+        <div class="right">right
+            <br>I don't want this one to scroll
+            <br>this should
+            <br>determine
+            <br>the height of the whole grid container</div>
+        <div class="footer">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Send a message" aria-label="Type in message here" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

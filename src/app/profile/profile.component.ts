@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { Player } from '../bug-bear';
+import { Player } from '../app';
 import { Observable } from 'rxjs/Observable';
 import { PlayerComponent } from '../player/player.component';
 

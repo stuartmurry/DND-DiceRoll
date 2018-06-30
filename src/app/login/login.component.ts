@@ -10,7 +10,7 @@ import {
   AngularFirestoreDocument
 } from "angularfire2/firestore";
 
-import { Dice, Message, Game, Player } from "../bug-bear";
+import { Dice, Message, Game, Player } from "../app";
 import { AngularFireAuth } from "angularfire2/auth";
 import { Router } from "@angular/router";
 
