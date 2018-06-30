@@ -161,9 +161,8 @@ export class PlayerComponent implements OnInit {
     console.log("Clicking on Dice");
 
     // Clear existing dice
-    _.each(this.selectedCharacter.Di, function(d) {
-      d.IsDisabled = true;
-    });
+
+    this.selectedCharacter.Di.forEach(d => d.IsDisabled = true);
 
     // Set the current dice
     d.IsDisabled = false;
@@ -190,7 +189,7 @@ export class PlayerComponent implements OnInit {
     
     let totalRoleValue = 0;
     let diceMath: string[] = [];
-    _.each(this.diceQueue, function(d) {
+    this.diceQueue.forEach(d => {
       var rolledValue = Math.floor(Math.random() * +d.Val + 1);
       diceMath.push("D" + d.Val + "(" + rolledValue + ")");
       d.RolledValue = rolledValue;
